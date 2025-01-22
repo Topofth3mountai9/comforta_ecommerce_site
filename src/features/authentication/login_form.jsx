@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Form from '../../ui/form
+import Form from '../../ui/form';
 import Input from '../../ui/Input';
 
 import { useLogin } from './useLogin';
