@@ -1,0 +1,53 @@
+{
+  "name": "shopping_site",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.1",
+    "@radix-ui/react-toast": "^1.2.4",
+    "@shadcn/ui": "^0.0.4",
+    "@svgr/rollup": "^8.1.0",
+    "@tanstack/react-query-devtools": "^5.51.23",
+    "clsx": "^2.1.1",
+    "css-module-class-lister": "^1.2.0",
+    "date-fns": "^3.6.0",
+    "mdb-react-ui-kit": "^9.0.0",
+    "mdb-ui-kit": "^8.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.54.1",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.4.0",
+    "react-router-dom": "^6.26.0",
+    "recharts": "^2.12.7",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@tanstack/react-query": "^5.62.14",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.23",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "framer-motion": "^11.15.0",
+    "lucide-react": "^0.469.0",
+    "postcss": "^8.4.49",
+    "react-masonry-css": "^1.0.16",
+    "sass": "^1.77.8",
+    "styled-components": "^6.1.13",
+    "swiper": "^11.2.0",
+    "tailwindcss": "^3.4.17",
+    "vite": "^5.3.1"
+  }
+}
