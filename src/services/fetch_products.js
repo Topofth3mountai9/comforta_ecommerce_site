@@ -47,11 +47,11 @@ async function getCachedProducts() {
 export async function fetch_products({ url }) {
   // console.log(filters);
 
-  return {
-    products: all_products,
-    count: all_products.length,
-  };
-  let wanted_page_results;
+  // return {
+  //   products: all_products,
+  //   count: all_products.length,
+  // };
+  // let wanted_page_results;
   // const { page, limit } = filters;
   try {
     // Check for cached data first

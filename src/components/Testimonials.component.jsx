@@ -1,9 +1,9 @@
 import React from 'react';
 import OurContainer from './OurContainer.component';
-import Section_header from './Section_header.component';
 import TestimonialsSwiper from './TestimonialsSwiper.component';
 import styled from 'styled-components';
 import { respond_to } from '../helpers/breakpoints';
+import Section_header from './section_header.component';
 
 const TestimonialsContainer = styled.section`
   width: 100%;
