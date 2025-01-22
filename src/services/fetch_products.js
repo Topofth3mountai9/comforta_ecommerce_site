@@ -100,7 +100,8 @@ export async function fetch_products({ url }) {
       ...products.map((product) => storeImage(product.image)),
     ]);
 
-    return products;
+    // return products;
+    return { products: products, count: products.length };
   } catch (error) {
     console.error('Error fetching products:', error);
     const cachedData = await getCachedProducts();
