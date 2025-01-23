@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetch_products } from '../services/fetch_products';
+import { fetch_products } from '../services/fetch_productsV1';
 import { products_url, results_on_the_screen } from '../constants';
 import { useSearchParams } from 'react-router-dom';
 import { usePaginationContext } from '../context/PaginationContext';
@@ -24,7 +24,8 @@ export function useGetProducts() {
   } = useQuery({
     queryKey: ['products', page],
     // queryFn: () => fetch_products({ products_url, filters }),
-    queryFn: () => fetch_products({ products_url }),
+    // queryFn: () => fetch_products({ products_url }),
+    queryFn: () => fetch_products(products_url),
   });
 
   console.log(response);

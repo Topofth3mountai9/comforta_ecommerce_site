@@ -551,3 +551,13 @@ let copy_changed = {
 console.log(copy_changed.images.shift());
 console.log(copy_changed);
 // console.log(specific_product.images[0]);
+
+export async function fetch_products({ url }) {
+  return {
+    products: all_products,
+    count: all_products.length,
+  };
+}
+
+const products = await fetch_products({ url: 'somn' });
+console.log(products);
