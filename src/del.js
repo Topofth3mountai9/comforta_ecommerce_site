@@ -284,6 +284,16 @@ let all_products = [
   },
 ];
 
+let result = [...all_products];
+let current_search_value = 'wooden';
+
+result = current_search_value
+  ? result.filter((product) =>
+      product.name.toLowerCase().includes(current_search_value.toLowerCase())
+    )
+  : result;
+console.log(result);
+
 let unique_colors = [
   'all',
   ...new Set(all_products.flatMap((product) => product['colors'])),
@@ -298,10 +308,10 @@ let unique_companies = [
   'all',
   ...new Set(all_products.flatMap((p) => p['company'])),
 ];
-console.log(unique_companies);
-console.log(unique_colors);
-console.log(unique_categories);
-console.log(unique_colors.slice(1));
+// console.log(unique_companies);
+// console.log(unique_colors);
+// console.log(unique_categories);
+// console.log(unique_colors.slice(1));
 let filtered_products;
 let colors_filter_value = '#000';
 let category_filter_value = 'office';
@@ -331,15 +341,17 @@ function filter_categories() {
 
 // filter_colors();
 filter_categories();
-console.log(filtered_products);
+// console.log(filtered_products);
 
 let d = all_products.filter((p) => p['colors'].some((c) => c === '#ff0000'));
-console.log(d);
+// console.log(d);
 
 // function fc()
 // fc()
-console.log(filtered_products);
+// console.log(filtered_products);
 
+console.log(Math.min(...all_products.flatMap((p) => Number(p['price']) / 100)));
+console.log(...all_products.flatMap((p) => Number(p.price)));
 console.log(typeof '');
 
 let cached_data = [
@@ -403,7 +415,7 @@ let products_eq_or_below_lowest = all_products.filter(
 
 console.log(products_eq_or_below_lowest);
 
-let result = [...all_products];
+// let result = [...all_products];
 
 const filter_functions = {
   category: (products, value) =>

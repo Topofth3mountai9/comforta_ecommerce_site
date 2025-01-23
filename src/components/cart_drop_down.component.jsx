@@ -70,12 +70,20 @@ function Cart_drop_down({ close_cart_drop_down }) {
           <h3 className="empty_message">Your cart is empty</h3>
         </CartItemsWrapper>
       )}
-      {cart.length > 0 && (
+      {cart.length > 0 ? (
         <StyledLink
           to="/checkout"
           className="checkout_btn btn btn-primary rounded-md flex_items align_middle align_horizontal"
         >
           go to checkout
+        </StyledLink>
+      ) : (
+        <StyledLink
+          to="/products"
+          className="checkout_btn btn btn-primary rounded-md flex_items align_middle align_horizontal"
+          onClick={close_cart_drop_down}
+        >
+          Fill your cart
         </StyledLink>
       )}
     </CartDropDownContainer>

@@ -1,8 +1,6 @@
 // import { results_on_the_screen } from '../constants';
 // import { all_products } from '../data';
 import { all_products } from '../data';
-import { filter_functions } from '../helpers/filter_helpers';
-
 import { initDB, STORE_NAMES, storeIndividualProducts, storeImage } from './db';
 
 // Store data in IndexedDB with timestamp
@@ -43,64 +41,29 @@ async function getCachedProducts() {
 }
 
 // Main fetch function
-export async function fetch_products({ url, filters }) {
-  //pulling everything out
-  const {
-    search,
-    page,
-    limit,
-    category,
-    colors,
-    company,
-    price_below,
-    sort_by,
-  } = filters;
-  let current_filters = filters;
-  let filtered_data = all_products;
-
-  // let wanted = {
+export async function fetch_products({ url }) {
+  console.log(url);
+  console.log(all_products);
+  // return {
   //   products: all_products,
   //   count: all_products.length,
   // };
-  // console.log(wanted);
+  let wanted = {
+    products: all_products,
+    count: all_products.length,
+  };
+  console.log(wanted);
   try {
     // Check for cached data first
     const cachedData = await getCachedProducts();
     console.log(cachedData);
     if (cachedData) {
       const [obj_from_db] = cachedData;
-      const all_products = obj_from_db.data || [];
-      let filtered_data = obj_from_db.data || [];
+      const filtered_data = obj_from_db.data || [];
       console.log(filtered_data);
 
-      //apply filters
-
-      //start of search
-      const current_search_value = search;
-      console.log(current_search_value);
-      filtered_data = current_search_value
-        ? filtered_data.filter((product) =>
-            product.name
-              .toLowerCase()
-              .includes(current_search_value.toLowerCase())
-          )
-        : filtered_data;
-
-      for (let [key, value] of Object.entries(current_filters)) {
-        //confirming if the function exists
-        if (filter_functions[key]) {
-          filtered_data = filter_functions[key](filtered_data, value);
-        }
-      }
-
-      //applying pagination
-      const start = (page - 1) * limit;
-      const end = start + limit;
-      const paginated_data = filtered_data.slice(start, end);
-
       return {
-        all_products,
-        products: paginated_data,
+        products: filtered_data,
         count: filtered_data.length,
       };
     }
@@ -132,37 +95,9 @@ export async function fetch_products({ url, filters }) {
       };
     }
 
-    //apply filters
-
-    //start of search
-    const current_search_value = search;
-    console.log(current_search_value);
-    filtered_data = current_search_value
-      ? filtered_data.filter((product) =>
-          product.name
-            .toLowerCase()
-            .includes(current_search_value.toLowerCase())
-        )
-      : filtered_data;
-
-    for (let [key, value] of Object.entries(current_filters)) {
-      //confirming if the function exists
-      if (filter_functions[key]) {
-        filtered_data = filter_functions[key](filtered_data, value);
-      }
-    }
-
-    //applying pagination
-    const start = (page - 1) * limit;
-    const end = start + limit;
-    const paginated_data = filtered_data.slice(start, end);
-
-    console.log(filtered_data);
-
     return {
-      all_products,
-      products: paginated_data,
-      count: filtered_data.length,
+      products: all_products,
+      count: all_products.length,
     };
     throw error; // Rethrow the error if no cache and fetch fails
   }

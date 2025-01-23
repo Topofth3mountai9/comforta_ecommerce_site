@@ -97,16 +97,17 @@ function Trending_products() {
   const navigate = useNavigate();
   // const { featured_products } = useProductsContext();
   const {
+    all_products,
     found_products = [],
     is_getting_products,
     count,
     error,
   } = useGetProducts();
-  //   console.log(featured_products);
 
-  // if (is_getting_products) return <Loader />;
+  if (is_getting_products) return <Loader />;
+  console.log(found_products);
 
-  const featured_products = found_products.filter(
+  const featured_products = all_products.filter(
     (product) => product.featured === true
   );
 

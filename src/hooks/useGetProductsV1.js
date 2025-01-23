@@ -5,28 +5,28 @@ import { useSearchParams } from 'react-router-dom';
 import { usePaginationContext } from '../context/PaginationContext';
 import { fetch_products } from '../services/fetch_products';
 
-import { all_products } from '../data';
-import { get_current_filters } from '../helpers/filter_helpers';
-
 export function useGetProducts() {
   const query_client = useQueryClient();
-  const [search_params, set_search_params] = useSearchParams();
+  // const [search_params, set_search_params] = useSearchParams();
   const { page } = usePaginationContext();
 
-  //GETTING ALL THE FILTERS
-  const filters = get_current_filters();
-  console.log(filters);
+  //typically we get all the filter parameters
+  //but we'll just get the pagination here
+  // const filters = {
+  //   page,
+  //   limit: results_on_the_screen,
+  // };
 
   const {
     // data: all_products = {},
     // data: all_products = {},
-    data: response = { all_products: [], products: [], count: 0 },
+    data: response = { products: [], count: 0 },
     error,
     isLoading: is_getting_products,
   } = useQuery({
-    queryKey: ['products', filters],
+    queryKey: ['products', page],
     // queryFn: () => fetch_products({ products_url, filters }),
-    queryFn: () => fetch_products({ products_url, filters }),
+    queryFn: () => fetch_products({ products_url }),
     // queryFn: () => fetch_products(products_url),
     // queryFn: () => fetch_products(products_url),
   });
@@ -48,30 +48,28 @@ export function useGetProducts() {
   );
   if (page < num_of_pages_to_cycle_through) {
     query_client.prefetchQuery({
-      // queryKey: ['products', page + 1],
-      queryKey: ['products', { ...filters, page: page + 1 }],
-      // queryFn: () => fetch_products({ products_url, page: page + 1 }),
-      queryFn: () =>
-        fetch_products({
-          products_url,
-          filters: { ...filters, page: page + 1 },
-        }),
+      queryKey: ['products', page + 1],
+      // queryKey: ['products', filters],
+      queryFn: () => fetch_products({ products_url, page: page + 1 }),
+      // queryFn: () =>
+      //   fetch_products({
+      //     products_url,
+      //     filters: { page: page + 1, limit: results_on_the_screen },
+      //   }),
     });
   }
-
   if (page > 1) {
     query_client.prefetchQuery({
       queryKey: ['products', page - 1],
       queryFn: () =>
         fetch_products({
           products_url,
-          filters: { ...filters, page: page - 1 },
+          page: page - 1,
         }),
     });
   }
   // return { found_products, error, is_getting_products, count };
   return {
-    all_products: response.all_products,
     found_products: response.products,
     count: response.count,
     error,

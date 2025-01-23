@@ -6,6 +6,7 @@ const RangeWrapper = styled.input`
 `;
 
 function Normal_range({ min, max, handle_change, value }) {
+  console.log(min, max);
   return (
     <RangeWrapper
       type="range"
