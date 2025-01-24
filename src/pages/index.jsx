@@ -9,6 +9,7 @@ import PageNotFound from './PageNotFound';
 import About from './about/About';
 import Contact from './contact/contact';
 import Login from './Login';
+import SignUp from './signup/sign_up';
 
 export {
   Home,
@@ -17,6 +18,7 @@ export {
   Products,
   SingleProduct,
   Cart,
+  SignUp,
   Login,
   Checkout,
   PageNotFound,

@@ -24,6 +24,14 @@ export const cart_reducer = (state, action) => {
     const { id, color_chosen, amount_of_items_chosen, item_to_add } =
       action.payload;
     console.log(item_to_add);
+    console.log({
+      image:
+        `/products/${
+          item_to_add.images[0].url.split('/')[
+            item_to_add.images[0].url.split('/').length - 1
+          ]
+        }` || '/gallery/gallery_3.jpg',
+    });
     // if (!id || !color_chosen || !amount_of_items_chosen || !item_to_add)
     //   throw new ValidationError(
     //     'Missing required fields for adding items to cart!'
@@ -77,10 +85,12 @@ export const cart_reducer = (state, action) => {
           amount_of_items_chosen,
           item_to_add.stock
         ),
-        // image: item_to_add.image || '/gallery/gallery_3.jpg',
         image:
-          `/products/${item_to_add.images[0].filename}` ||
-          '/gallery/gallery_3.jpg',
+          `/products/${
+            item_to_add.images[0].url.split('/')[
+              item_to_add.images[0].url.split('/').length - 1
+            ]
+          }` || '/gallery/gallery_3.jpg',
         price: item_to_add.price,
         stock_max: item_to_add.stock || 4,
       });

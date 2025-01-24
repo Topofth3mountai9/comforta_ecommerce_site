@@ -79,7 +79,7 @@ export async function fetch_products({ url, filters }) {
       const current_search_value = search;
       console.log(current_search_value);
       filtered_data = current_search_value
-        ? filtered_data.filter((product) =>
+        ? all_products.filter((product) =>
             product.name
               .toLowerCase()
               .includes(current_search_value.toLowerCase())
@@ -138,7 +138,7 @@ export async function fetch_products({ url, filters }) {
     const current_search_value = search;
     console.log(current_search_value);
     filtered_data = current_search_value
-      ? filtered_data.filter((product) =>
+      ? all_products.filter((product) =>
           product.name
             .toLowerCase()
             .includes(current_search_value.toLowerCase())

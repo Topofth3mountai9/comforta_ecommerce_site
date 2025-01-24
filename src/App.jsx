@@ -14,6 +14,7 @@ import {
   PageNotFound,
   Contact,
   Login,
+  SignUp,
 } from './pages';
 import ProtectedRoute from './components/protected_route.component';
 function App() {
@@ -40,6 +41,7 @@ function App() {
             />
           </Route>
 
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

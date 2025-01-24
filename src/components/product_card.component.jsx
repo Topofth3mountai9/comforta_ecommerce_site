@@ -4,6 +4,8 @@ import { Star } from 'lucide-react';
 import { format_currency } from '../helpers/format_currency';
 import { Link } from 'react-router-dom';
 import { respond_to } from '../helpers/breakpoints';
+import { theme } from '../styles/better_theme';
+import { HiOutlineShoppingCart } from 'react-icons/hi2';
 
 const CardWrapper = styled.div`
   width: 30rem;
@@ -11,7 +13,7 @@ const CardWrapper = styled.div`
   /* margin-inline: auto; */
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -19,6 +21,21 @@ const CardWrapper = styled.div`
   position: relative;
 
   &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .card_title {
+      &::after {
+        transform: scale(1);
+      }
+    }
+
+    .cart_btn_wrapper {
+      background: ${({ theme }) => theme.colors.brand_secondary_light[800]};
+      svg {
+        color: ${({ theme }) => theme.colors.brand_secondary_light[100]};
+      }
+    }
+
     .card_hover_wrapper {
       background-color: rgba(0, 0, 0, 0.6);
 
@@ -144,6 +161,22 @@ const CardTitle = styled.h4`
   /* font-size: ; */
   font-weight: 500;
   text-transform: capitalize;
+  position: relative;
+
+  &::after {
+    content: '';
+    height: 0.12rem;
+    width: 10rem;
+    position: absolute;
+    background: ${({ theme }) => theme.colors.brand_secondary_dark[300]};
+    bottom: 0;
+    left: 0;
+    /* transform: translate(); */
+    //hiding by default
+    transform: scale(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
 `;
 
 const CardDescription = styled.p`
@@ -177,6 +210,18 @@ const Price = styled.h5`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.secondary};
   font-family: ${({ theme }) => theme.typography.fonts.money};
+`;
+
+const CartButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 2.8rem;
+  right: 2rem;
+  padding: 0.8rem;
+  border-radius: ${({ theme }) => theme.border_radius.md};
+  background: ${({ theme }) => theme.colors.grey.c};
+  svg {
+    color: ${({ theme }) => theme.colors.grey.h};
+  }
 `;
 
 const CardFooter = styled.div`
@@ -235,7 +280,7 @@ ProductCard.CardHoverContent = function CardHoverContent({
 ProductCard.Header = function ProductCardHeader({ title, description }) {
   return (
     <CardHeader>
-      <CardTitle>{title}</CardTitle>
+      <CardTitle className="card_title">{title}</CardTitle>
       <CardDescription>{description}...</CardDescription>
     </CardHeader>
   );
@@ -254,7 +299,17 @@ ProductCard.Rating = function ProductCardRating({ rating }) {
 ProductCard.Price = function ProductCardPrice({ price }) {
   //   console.log(price);
   //   return <Price>${price.toFixed(2)}</Price>;
-  return <Price>{format_currency(price / 100)}</Price>;
+  return <Price>{format_currency(price)}</Price>;
+};
+
+ProductCard.CartButton = function CartButton() {
+  return (
+    <CartButtonWrapper
+      className={`cart_btn_wrapper flex_items align_middle align_horizontal bg-[${theme.colors.grey.b}]`}
+    >
+      <HiOutlineShoppingCart />
+    </CartButtonWrapper>
+  );
 };
 
 ProductCard.Footer = function ProductCardFooter({ children }) {

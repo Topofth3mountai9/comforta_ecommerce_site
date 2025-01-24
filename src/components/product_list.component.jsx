@@ -98,6 +98,7 @@ function ProductList() {
 
   const pricing_card_elements = all_products.map((product) => {
     const { id, image, name, stars: rating, price, description } = product;
+
     return (
       <ProductCard
         key={id}

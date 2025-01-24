@@ -144,6 +144,19 @@ select:focus {
   // border-radius: ${theme.border_radius.sm};
 }
 
+//remove arrows/spinners
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 
 h1,
 h2,
@@ -558,6 +571,10 @@ input,
 
 //SWIPER STYLES 
 .swiper{
+  overflow: visible;
+
+  overflow-x: clip;
+
   /* overflow-x: hidden !important;
   overflow-y: visible !important; */
   /* overflow: visible !important; */
@@ -609,7 +626,7 @@ input {
   /* width: 100%; */
   /* width: 100%; */
   font-size: ${theme.typography.text.tiny};
-  // font-size: 1.33rem;
+  font-size: 15px;
 }
 
 input[type='file'] {

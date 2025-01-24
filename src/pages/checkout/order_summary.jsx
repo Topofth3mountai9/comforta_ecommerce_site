@@ -32,11 +32,16 @@ const OrderSummaryWrapper = styled.div`
     background: ${({ theme }) => theme.colors.grey.input_bg};
     color: ${({ theme }) => theme.colors.grey.f};
     padding: 1.8rem 1.5rem;
+    letter-spacing: 0.1rem;
+
+    .sub_total {
+    }
   }
 
   .total {
     background: ${({ theme }) => theme.colors.grey[0]};
     padding: 0.3rem 1.5rem;
+    letter-spacing: 0.1rem;
   }
 
   .action_btns {
@@ -64,13 +69,13 @@ function OrderSummary() {
         <h5>Order Summary</h5>
       </div>
       <div className="subtotal_shipping_coupon">
-        <p className="sub_total common">
+        <h5 className="sub_total common">
           Subtotal <span>{subtotal}</span>
-        </p>
+        </h5>
         <p className="shipping common">
           Shipping <span>{format_currency(shipping_fee)}</span>
         </p>
-        <p className="coupon text_primary flex_items g_2">
+        <p className="coupon text_secondary flex_items g_2">
           Add coupon code{' '}
           <span>
             <HiArrowRight />
@@ -78,7 +83,7 @@ function OrderSummary() {
         </p>
       </div>
       <div className="total">
-        <p className="total common">
+        <p className="total common heading_4">
           Total <span>{format_currency(total_amount)}</span>
         </p>
       </div>

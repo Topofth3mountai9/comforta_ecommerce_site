@@ -66,7 +66,7 @@ function Hero_vanilla({
         {slides.length > 0 ? (
           <Swiper
             modules={[Autoplay, Navigation, Pagination]}
-            autoplay={autoplay ? { delay: 5000 } : false}
+            autoplay={autoplay ? { delay: 500000000000 } : false}
             loop={loop}
             pagination={pagination ? { clickable: true } : false}
             style={{ width: '100%', height: '100%' }}

@@ -74,6 +74,7 @@ function Cart_drop_down({ close_cart_drop_down }) {
         <StyledLink
           to="/checkout"
           className="checkout_btn btn btn-primary rounded-md flex_items align_middle align_horizontal"
+          onClick={close_cart_drop_down}
         >
           go to checkout
         </StyledLink>

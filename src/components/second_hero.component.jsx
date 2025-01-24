@@ -7,19 +7,20 @@ import { useGetProducts } from '../hooks/useGetProducts';
 function second_hero() {
   // const { featured_products } = useProductsContext();
   const {
-    found_products = [],
+    all_products,
+    // found_products = [],
     is_getting_products,
     count,
     error,
   } = useGetProducts();
-  //   console.log(featured_products);
 
-  const featured_products = found_products.filter(
+  const featured_products = all_products.filter(
     (product) => product.featured === true
   );
+  // console.log(featured_products);
 
   const background_imgs = featured_products.map((product) => product.image);
-  console.log(background_imgs);
+  // console.log(background_imgs);
   return (
     <Hero_vanilla slides={featured_products}>
       <Hero_vanilla.Text marginTop={0}>

@@ -99,7 +99,7 @@ const Similar_items = () => {
       //     <Rating rating={rating || 4} />
       //     <h4>{price}</h4>
       //   </PricingCardWrapper>
-      <PricingCard onClick={() => navigate(`/product/${product.id}`)}>
+      <PricingCard onClick={() => navigate(`/product/${id}`)}>
         <PricingCard.Icons
           icons={[<Link />, <Heart />, <FaMagnifyingGlassPlus />]}
         />

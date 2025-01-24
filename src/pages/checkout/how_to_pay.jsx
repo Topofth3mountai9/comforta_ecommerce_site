@@ -80,10 +80,10 @@ function HowToPay() {
             {/* <TabsRadio.Tab label="PayPal" value="pay_pal" />
             <TabsRadio.Tab label="GiftCard" value="gift_card" /> */}
           </TabsRadio.TabsList>
-          {/* <TabsRadio.TabPanel value="credit_card">
+          <TabsRadio.TabPanel value="credit_card">
             <CreditCardForm />
           </TabsRadio.TabPanel>
-          <TabsRadio.TabPanel value="pay_pal">
+          {/*<TabsRadio.TabPanel value="pay_pal">
             <PayPalForm />
           </TabsRadio.TabPanel>
           <TabsRadio.TabPanel value="gift_card">

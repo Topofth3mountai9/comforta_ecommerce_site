@@ -37,7 +37,7 @@ export function get_any_input_validation(title, type, is_required) {
         required: {
           value: true,
           // message: `${title.split(' ')[0] || title} is required`,
-          message: `${title.toLowerCase()} is required`,
+          message: `${title.toLowerCase()} is required!`,
         },
         ...must_be_included,
       },

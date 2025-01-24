@@ -202,11 +202,11 @@ function TestimonialsSwiper() {
   return (
     <Swiper
       modules={[Autoplay, Pagination, Navigation]}
-      autoplay={{ delay: 10000000000000 }}
+      autoplay={{ delay: 1000000000 }}
       navigation
       pagination={{ clickable: true }}
       loop
-      style={{ overflow: 'visible' }}
+      // style={{ overflow: 'visible' }}
       slidesPerView={1}
       // centeredSlides={true}
       spaceBetween={10}

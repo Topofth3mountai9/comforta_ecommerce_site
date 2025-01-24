@@ -110,6 +110,7 @@ function Trending_products() {
   const featured_products = all_products.filter(
     (product) => product.featured === true
   );
+  // console.log(featured_products);
 
   const trending_product_elements = featured_products
     .slice(0, 9)
@@ -124,6 +125,7 @@ function Trending_products() {
         <CardContent>
           <ProductCard.Rating rating={4} />
           <ProductCard.Price price={product.price} />
+          <ProductCard.CartButton />
         </CardContent>
       </ProductCard>
     ));

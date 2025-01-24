@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { respond_to } from '../helpers/breakpoints';
 
 const Form = styled.form`
   ${(props) =>
@@ -20,6 +21,11 @@ const Form = styled.form`
     
   overflow: hidden;
   font-size: 1.4rem;
+
+  ${respond_to('450')} {
+    width: 40rem;
+    margin-inline: auto;
+  }
 `;
 
 Form.defaultProps = {

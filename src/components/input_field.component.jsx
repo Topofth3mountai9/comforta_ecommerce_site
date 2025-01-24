@@ -5,7 +5,6 @@ import { MdError } from 'react-icons/md';
 import styled, { css } from 'styled-components';
 import { find_input_error } from '../helpers/find_input_error';
 import { is_form_invalid } from '../helpers/is_form_invalid';
-import { BookTypeIcon } from 'lucide-react';
 
 const StyledInputFormRow = styled.div`
   display: flex;
@@ -24,13 +23,15 @@ const StyledInputFormRow = styled.div`
   }
 
   .label {
+    flex: 0.33;
     padding: 0;
-    font-size: ${({ theme }) => theme.typography.text.xs};
+    /* font-size: ${({ theme }) => theme.typography.text.xs}; */
+    font-size: 1.4rem;
     font-weight: 600;
     /* text-transform: uppercase; */
     letter-spacing: 0.1rem;
     color: ${({ theme, background }) =>
-      background ? theme.colors.grey[100] : theme.colors.grey.e};
+      background ? theme.colors.grey[100] : theme.colors.grey.g};
     /* text-transform: ${({ type }) =>
       type === 'checkbox' || type === 'radio' ? 'lowercase' : 'uppercase'};
     letter-spacing: ${({ type }) =>
@@ -53,9 +54,12 @@ const StyledInputFormRow = styled.div`
   }
 
   .input-container {
+    flex: 0.63;
     display: inline-flex;
     /* flex: 1; */
-    order: ${({ type }) => (type === 'checkbox' || type === 'radio' ? -1 : 1)};
+    /* order: ${({ type }) =>
+      type === 'checkbox' || type === 'radio' ? -1 : 1}; */
+    order: ${({ type }) => (type === 'checkbox' || type === 'radio' ? -1 : 0)};
     /* order: ${({ type }) => {
       console.log(type);
       if (type === 'checked') return -1;
@@ -83,7 +87,7 @@ const StyledInputFormRow = styled.div`
     /* padding: ${({ type }) =>
       type === 'checkbox' || type === 'radio' ? 0 : '1rem 2rem'}; */
     color: ${({ background, theme }) =>
-      background ? theme.colors.grey[0] : theme.colors.grey.g};
+      background ? theme.colors.grey[0] : theme.colors.grey.e};
     border: none;
 
     &::placeholder {
@@ -91,9 +95,11 @@ const StyledInputFormRow = styled.div`
         console.log(props);
       }} */
       color: ${({ background, theme }) =>
-        background ? theme.colors.grey[0] : theme.colors.grey.g};
+        background ? theme.colors.grey[0] : theme.colors.grey.e};
       /* color: ${({ theme }) => theme.colors.grey[0]}; */
-      font-size: ${({ theme }) => theme.typography.text.xs};
+      /* font-size: ${({ theme }) => theme.typography.text.xs}; */
+      /* font-size: ${({ theme }) => theme.typography.text.tiny}; */
+      font-size: 15px;
     }
   }
 
@@ -103,6 +109,7 @@ const StyledInputFormRow = styled.div`
   }
 
   .error_container {
+    flex: 0.2;
     font-size: ${({ theme }) => theme.typography.text.xs};
     color: ${({ theme }) => theme.colors.error};
   }
