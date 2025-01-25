@@ -62,6 +62,7 @@ function Subscribe_form() {
             <Input
               type="text"
               id="email_address"
+              placeholder="Enter your email address"
               style={{
                 background: theme.colors.secondary,
                 border: 'none',

@@ -210,7 +210,7 @@ function NavBar() {
           )}
         </Navbar.Links>
         <ButtonWithIcon
-          className="btn search_btn"
+          className="btn search_btn ml-4"
           onClick={() => {
             navigate('/products');
             document.getElementById('my_modal_2').showModal();

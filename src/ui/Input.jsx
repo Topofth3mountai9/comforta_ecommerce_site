@@ -7,6 +7,10 @@ const Input = styled.input`
   border-radius: ${({ theme }) => theme.border_radius.md};
   padding: 0.8rem 1.2rem;
   box-shadow: ${({ theme }) => theme.box_shadows.sm};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.brand_secondary_light[200]};
+  }
 `;
 
 export default Input;

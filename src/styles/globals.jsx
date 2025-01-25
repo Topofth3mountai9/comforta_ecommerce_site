@@ -137,7 +137,7 @@ input:focus,
 button:focus,
 textarea:focus,
 select:focus {
-  // outline: 2px solid ${theme.colors.primary};
+   // outline: 2px solid ${theme.colors.primary};
   outline: none;
   // border: 2px solid ${theme.colors.primary};
   // outline-offset: -1px;

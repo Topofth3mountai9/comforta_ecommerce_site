@@ -11,6 +11,7 @@ const HeroWrapper = styled.div`
   background-position: center;
   display: flex;
   align-items: center;
+  padding-block: 2rem;
 
   ${respond_to('900')} {
     /* min-height: 80vh; */

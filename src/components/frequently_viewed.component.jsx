@@ -5,6 +5,7 @@ import { useGetProducts } from '../hooks/useGetProducts';
 import { Heart, Link } from 'lucide-react';
 import { FaMagnifyingGlassPlus } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
+import { format_currency } from '../helpers/format_currency';
 
 const FrequentlyViewedWrapper = styled.div`
   h3 {
@@ -33,7 +34,7 @@ function Frequently_viewed() {
         <PricingCard.Image src={image || `/gallery/gallery7.jpg`} />
         <PricingCard.Name name={name || 'great chairs'} />
         <PricingCard.Rating rating={rating || 4} />
-        <PricingCard.Price price={price || 400} />
+        <PricingCard.Price price={format_currency(price) || 400} />
       </PricingCard>
     );
   });

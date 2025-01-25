@@ -1,7 +1,7 @@
 // import { results_on_the_screen } from '../constants';
 // import { all_products } from '../data';
 import { all_products } from '../data';
-import { filter_functions } from '../helpers/filter_helpers';
+import { filter_functions, sort_functions } from '../helpers/filter_helpers';
 
 import { initDB, STORE_NAMES, storeIndividualProducts, storeImage } from './db';
 
@@ -93,6 +93,11 @@ export async function fetch_products({ url, filters }) {
         }
       }
 
+      //applying sorting
+      const sort_fn = sort_functions[sort_by];
+
+      filtered_data = sort_fn ? sort_fn(filtered_data) : filtered_data;
+
       //applying pagination
       const start = (page - 1) * limit;
       const end = start + limit;
@@ -151,6 +156,11 @@ export async function fetch_products({ url, filters }) {
         filtered_data = filter_functions[key](filtered_data, value);
       }
     }
+
+    //applying sorting
+    const sort_fn = sort_functions[sort_by];
+
+    filtered_data = sort_fn ? sort_fn(filtered_data) : filtered_data;
 
     //applying pagination
     const start = (page - 1) * limit;

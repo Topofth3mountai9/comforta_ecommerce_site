@@ -21,11 +21,14 @@ const StyledInputFormRow = styled.div`
   }
 
   .label {
+    flex: 0.33;
+    padding: 0;
     font-size: ${({ theme }) => theme.typography.text.xs};
     font-weight: 600;
     /* text-transform: uppercase; */
     letter-spacing: 0.1rem;
-    color: ${({ theme }) => theme.colors.grey.e};
+    /* color: ${({ theme }) => theme.colors.grey.e}; */
+    color: ${({ theme }) => theme.colors.grey.g};
   }
 
   .select_container {
@@ -45,11 +48,13 @@ const StyledInputFormRow = styled.div`
     background: ${({ theme }) => theme.colors.light_secondary};
     border-radius: ${({ theme }) => theme.border_radius.md};
     padding: 1rem 2rem;
-    color: ${({ theme }) => theme.colors.grey.g};
+    /* color: ${({ theme }) => theme.colors.grey.g}; */
+    color: ${({ theme }) => theme.colors.grey.e};
     border: none;
 
     &::placeholder {
-      color: ${({ theme }) => theme.colors.grey.g};
+      /* color: ${({ theme }) => theme.colors.grey.g}; */
+      color: ${({ theme }) => theme.colors.grey.e};
       font-size: ${({ theme }) => theme.typography.text.xs};
     }
   }

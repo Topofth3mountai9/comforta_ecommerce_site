@@ -38,3 +38,27 @@ export const filter_functions = {
       ? products
       : products.filter((product) => product.price <= Number(value) * 100),
 };
+
+//defining sort functions
+
+const collator = new Intl.Collator().compare;
+
+export const sort_functions = {
+  'price-desc': (products) => [...products].sort((a, b) => b.price - a.price),
+  'price-asc': (products) => [...products].sort((a, b) => a.price - b.price),
+  'name-a': (products) =>
+    [...products].sort((a, b) =>
+      a.name.split(' ')[0].localeCompare(b.name.split(' ')[0])
+    ),
+  'name-z': (products) =>
+    [...products].sort((a, b) =>
+      b.name.split(' ')[0].localeCompare(a.name.split(' ')[0])
+    ),
+  //   'name-z': (products) => {
+  // const all_names = products.map(p => p.name.split(' ')[0])
+  // let wanted_names_ordered =  [...all_names].sort(collator)
+  //   }
+  // [...products].sort((a, b) =>
+  //   b.name.split(' ')[0].localeCompare(a.name.split(' ')[0])
+  // ),
+};

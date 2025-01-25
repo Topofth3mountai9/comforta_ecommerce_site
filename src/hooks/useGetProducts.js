@@ -14,7 +14,8 @@ export function useGetProducts() {
   const { page } = usePaginationContext();
 
   //GETTING ALL THE FILTERS
-  const filters = get_current_filters();
+  const sort_by = search_params.get('sort_by') || 'price-desc';
+  const filters = { ...get_current_filters(), sort_by };
   console.log(filters);
 
   const {

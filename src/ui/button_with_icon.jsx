@@ -7,6 +7,11 @@ const ButtonWithIcon = styled.button`
   border-radius: ${({ theme }) => theme.border_radius.sm};
   transition: all 0.2s;
 
+  &:focus {
+    outline: ${({ theme }) =>
+      `2px solid ${theme.colors.brand_secondary_light[800]}`};
+  }
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.grey[100]};
   }
