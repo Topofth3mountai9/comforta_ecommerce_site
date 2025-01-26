@@ -3,7 +3,7 @@ import { SET_NEXT_PAGE, SET_PREV_PAGE } from '../actions';
 export const pagination_reducer = (state, action) => {
   if (action.type === SET_NEXT_PAGE) {
     const { next, which_section } = action.payload;
-    // console.log(which_section);
+    console.log(which_section);
     return { ...state, [which_section]: next };
   }
   if (action.type === SET_PREV_PAGE) {

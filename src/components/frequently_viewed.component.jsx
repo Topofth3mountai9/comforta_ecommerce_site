@@ -7,6 +7,8 @@ import { FaMagnifyingGlassPlus } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 import { format_currency } from '../helpers/format_currency';
 import Pagination from '../ui/Pagination';
+import { useGetFrequentlyViewedProducts } from '../hooks/useGetFequenlyViewedProducts';
+import Loader from '../ui/Loader';
 
 const FrequentlyViewedWrapper = styled.div`
   h3 {
@@ -23,9 +25,18 @@ const FrequentlyViewedWrapper = styled.div`
 `;
 
 function Frequently_viewed() {
-  const { found_products: products, count } = useGetProducts();
+  // const { found_products: products, count } = useGetProducts();
+  const {
+    found_products: products,
+    count,
+    is_getting_frequently_viewed_products,
+  } = useGetFrequentlyViewedProducts();
   const navigate = useNavigate();
-  const frequently_viewed_elements = products.slice(0, 4).map((product) => {
+  console.log(products);
+
+  if (is_getting_frequently_viewed_products) return <Loader />;
+
+  const frequently_viewed_elements = products.map((product) => {
     const { id, image, name, stars: rating, price } = product || {};
     return (
       <PricingCard onClick={() => navigate(`/product/${product.id}`)}>

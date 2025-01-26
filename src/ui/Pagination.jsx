@@ -65,14 +65,15 @@ const PaginationButton = styled.button`
 function Pagination({ pagination_category, total_results }) {
   const { page, similar_items_page, frequently_viewed_items_page, dispatch } =
     usePaginationContext();
+  console.log(similar_items_page);
 
   let current_page;
   let which_section;
   if (pagination_category === 'similar_items') {
     current_page = similar_items_page;
     which_section = 'similar_items_page';
-  }
-  if (pagination_category === 'frequently_viewed_items') {
+    console.log(which_section);
+  } else if (pagination_category === 'frequently_viewed_items') {
     current_page = frequently_viewed_items_page;
     which_section = 'frequently_viewed_items_page';
   } else {
@@ -81,6 +82,7 @@ function Pagination({ pagination_category, total_results }) {
   }
 
   console.log(current_page);
+  console.log(which_section);
   // const [searchParams, setSearchParams] = useSearchParams();
   // const current_page = !searchParams.get('page')
   //   ? 1

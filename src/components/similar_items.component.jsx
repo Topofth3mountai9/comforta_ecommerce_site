@@ -9,6 +9,8 @@ import { format_currency } from '../helpers/format_currency';
 import { usePaginationContext } from '../context/PaginationContext';
 import { results_on_the_screen } from '../constants';
 import Pagination from '../ui/Pagination';
+import { useGetSimilarProducts } from '../hooks/useGetSimilarProducts';
+import Loader from '../ui/Loader';
 
 const SimilarItemsWrapper = styled.div`
   h3 {
@@ -83,15 +85,23 @@ const PricingCardWrapper = styled.div`
 `;
 
 const Similar_items = () => {
-  const { found_products: products, count } = useGetProducts();
-
+  // const { found_products: products, count } = useGetProducts();
+  const {
+    found_products: products,
+    count,
+    is_getting_similar_products,
+  } = useGetSimilarProducts();
+  console.log(products);
   const navigate = useNavigate();
-  const { similar_items_page: page } = usePaginationContext();
+  // const { similar_items_page: page } = usePaginationContext();
+  // console.log(page);
 
   //applying pagination
 
   // const start = (page - 1) * results_on_the_screen;
   // const end = start + results_on_the_screen;
+
+  if (is_getting_similar_products) return <Loader />;
 
   const similar_product_elements = products.map((product) => {
     const { id, image, name, stars: rating, price } = product || {};

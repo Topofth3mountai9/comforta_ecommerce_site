@@ -241,7 +241,7 @@ input,
   /* background: ${theme.colors.primary} !important; */
   /* color: ${theme.colors.grey[100]}; */
   /* padding: 0.6em 1.2em; */
-  
+
     /* border-bottom: ${({ theme }) =>
       `.2rem solid ${theme.colors.brand_secondary_dark[200]} `}; */
     /* color: ${({ theme }) => theme.colors.brand_secondary_dark[500]}; */

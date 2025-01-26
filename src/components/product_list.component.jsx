@@ -81,7 +81,7 @@ function ProductList() {
   } = useGetProducts();
 
   const navigate = useNavigate();
-  // console.log(all_products);
+  console.log(all_products);
   //grabbing the filter value from the url
   const [search_params] = useSearchParams();
   const { page } = usePaginationContext();

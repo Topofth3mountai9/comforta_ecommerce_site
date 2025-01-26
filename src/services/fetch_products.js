@@ -57,6 +57,7 @@ export async function fetch_products({ url, filters }) {
   } = filters;
   let current_filters = filters;
   let filtered_data = all_products;
+  console.log(current_filters);
 
   // let wanted = {
   //   products: all_products,
@@ -163,11 +164,10 @@ export async function fetch_products({ url, filters }) {
     filtered_data = sort_fn ? sort_fn(filtered_data) : filtered_data;
 
     //applying pagination
+    //applying pagination
     const start = (page - 1) * limit;
     const end = start + limit;
     const paginated_data = filtered_data.slice(start, end);
-
-    console.log(filtered_data);
 
     return {
       all_products,

@@ -8,7 +8,7 @@ import { fetch_products } from '../services/fetch_products';
 import { all_products } from '../data';
 import { get_current_filters } from '../helpers/filter_helpers';
 
-export function useGetProducts() {
+export function useGetProducts(type_of_products) {
   const query_client = useQueryClient();
   const [search_params, set_search_params] = useSearchParams();
   const { page } = usePaginationContext();
@@ -33,12 +33,6 @@ export function useGetProducts() {
   });
 
   console.log(response);
-  // console.log(all_products);
-  //PAGINATION
-  // let page = !search_params.get('page') ? 1 : Number(search_params.get('page'));
-  // console.log(products);
-  // const [found_products, count] = products;
-  // console.log(count);
 
   //PREFETCHING
   //the way it works is we call the prefetch on the query client
@@ -62,7 +56,7 @@ export function useGetProducts() {
 
   if (page > 1) {
     query_client.prefetchQuery({
-      queryKey: ['products', page - 1],
+      queryKey: ['products', { ...filters, page: page - 1 }],
       queryFn: () =>
         fetch_products({
           products_url,
@@ -70,6 +64,9 @@ export function useGetProducts() {
         }),
     });
   }
+
+  // for frequently viewed items
+
   // return { found_products, error, is_getting_products, count };
   return {
     all_products: response.all_products,

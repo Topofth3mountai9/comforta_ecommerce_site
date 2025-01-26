@@ -6,7 +6,8 @@ export const to_be_removed_when_searching = ['category', 'colors', 'company'];
 
 export function get_current_filters() {
   const [search_params] = useSearchParams();
-  const { page } = usePaginationContext();
+  const { page, similar_items_page, frequently_viewed_items_page } =
+    usePaginationContext();
   return {
     search: search_params.get('search') || '',
     category: search_params.get('category') || 'all',
@@ -14,6 +15,8 @@ export function get_current_filters() {
     company: search_params.get('company') || 'all',
     price_below: search_params.get('price_below') || Infinity,
     page,
+    similar_items_page,
+    frequently_viewed_items_page,
     limit: results_on_the_screen,
   };
 }
