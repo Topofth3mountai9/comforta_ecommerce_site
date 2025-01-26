@@ -6,6 +6,9 @@ import { FaMagnifyingGlassPlus } from 'react-icons/fa6';
 import PricingCard from './pricing_card.component';
 import { useNavigate } from 'react-router-dom';
 import { format_currency } from '../helpers/format_currency';
+import { usePaginationContext } from '../context/PaginationContext';
+import { results_on_the_screen } from '../constants';
+import Pagination from '../ui/Pagination';
 
 const SimilarItemsWrapper = styled.div`
   h3 {
@@ -80,8 +83,16 @@ const PricingCardWrapper = styled.div`
 `;
 
 const Similar_items = () => {
-  const { found_products: products } = useGetProducts();
+  const { found_products: products, count } = useGetProducts();
+
   const navigate = useNavigate();
+  const { similar_items_page: page } = usePaginationContext();
+
+  //applying pagination
+
+  // const start = (page - 1) * results_on_the_screen;
+  // const end = start + results_on_the_screen;
+
   const similar_product_elements = products.map((product) => {
     const { id, image, name, stars: rating, price } = product || {};
     // console.log(rating);
@@ -115,6 +126,7 @@ const Similar_items = () => {
     <SimilarItemsWrapper>
       <h3 className="mb_24">Discover Similar items</h3>
       <div className="similar_product_cards">{similar_product_elements}</div>
+      <Pagination pagination_category="similar_items" total_results={count} />
     </SimilarItemsWrapper>
   );
 };

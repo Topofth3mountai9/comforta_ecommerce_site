@@ -2,6 +2,8 @@ import { useSearchParams } from 'react-router-dom';
 import { usePaginationContext } from '../context/PaginationContext';
 import { results_on_the_screen } from '../constants';
 
+export const to_be_removed_when_searching = ['category', 'colors', 'company'];
+
 export function get_current_filters() {
   const [search_params] = useSearchParams();
   const { page } = usePaginationContext();

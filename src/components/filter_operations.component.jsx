@@ -24,16 +24,17 @@ const FilterOperationsWrapper = styled.div`
 function Filter_operations() {
   // const { all_products, dispatch } = useFilterContext();
   const {
+    all_products: everything,
     found_products: all_products,
     is_getting_products,
     count,
     error,
   } = useGetProducts();
-  const unique_categories = get_unique_values(all_products, 'category');
-  const unique_companies = get_unique_values(all_products, 'company');
+  const unique_categories = get_unique_values(everything, 'category');
+  const unique_companies = get_unique_values(everything, 'company');
   //   console.log(unique_companies);
   const default_companies = ['all', 'ikea', 'marcos', 'liddy', 'caressa'];
-  const unique_colors = get_unique_values(all_products, 'colors');
+  const unique_colors = get_unique_values(everything, 'colors');
   console.log(unique_colors);
   //when the component first loads we want to populate the different unique_value_types(colors, categories...)
   // useEffect(() => {

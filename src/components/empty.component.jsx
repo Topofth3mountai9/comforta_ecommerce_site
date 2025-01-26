@@ -5,6 +5,7 @@ const EmptyWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   justify-content: center;
+  margin-top: 3rem;
 `;
 
 function Empty({ resource_name }) {

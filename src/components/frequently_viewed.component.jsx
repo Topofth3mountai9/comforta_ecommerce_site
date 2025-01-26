@@ -6,6 +6,7 @@ import { Heart, Link } from 'lucide-react';
 import { FaMagnifyingGlassPlus } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 import { format_currency } from '../helpers/format_currency';
+import Pagination from '../ui/Pagination';
 
 const FrequentlyViewedWrapper = styled.div`
   h3 {
@@ -22,7 +23,7 @@ const FrequentlyViewedWrapper = styled.div`
 `;
 
 function Frequently_viewed() {
-  const { found_products: products } = useGetProducts();
+  const { found_products: products, count } = useGetProducts();
   const navigate = useNavigate();
   const frequently_viewed_elements = products.slice(0, 4).map((product) => {
     const { id, image, name, stars: rating, price } = product || {};
@@ -44,6 +45,10 @@ function Frequently_viewed() {
       <div className="frequently_viewed_product_cards">
         {frequently_viewed_elements}
       </div>
+      <Pagination
+        pagination_category="frequently_viewed_items"
+        total_results={count}
+      />
     </FrequentlyViewedWrapper>
   );
 }

@@ -9,6 +9,7 @@ import ProductList from '../components/product_list.component';
 import OurContainer from '../components/OurContainer.component';
 import { respond_to } from '../helpers/breakpoints';
 import { FilterContextProvider } from '../context/FilterContext';
+import { ProductsFilterContextProvider } from '../context/ProductsFilterContext';
 
 const ProductsContainer = styled.div`
   width: 100%;
@@ -37,20 +38,22 @@ const ProductsContent = styled.div`
 
 function Products() {
   return (
-    <ProductsContainer className="page">
-      <Breadcrumb current_page="products" svg={<HiOutlineChevronRight />} />
-      <OurContainer>
-        <ProductsContent>
-          {/* <FilterContextProvider> */}
-          <Filter_operations />
-          <div className="sort_and_product_list">
-            <Sort_operations />
-            <ProductList />
-          </div>
-          {/* </FilterContextProvider> */}
-        </ProductsContent>
-      </OurContainer>
-    </ProductsContainer>
+    <ProductsFilterContextProvider>
+      <ProductsContainer className="page">
+        <Breadcrumb current_page="products" svg={<HiOutlineChevronRight />} />
+        <OurContainer>
+          <ProductsContent>
+            {/* <FilterContextProvider> */}
+            <Filter_operations />
+            <div className="sort_and_product_list">
+              <Sort_operations />
+              <ProductList />
+            </div>
+            {/* </FilterContextProvider> */}
+          </ProductsContent>
+        </OurContainer>
+      </ProductsContainer>
+    </ProductsFilterContextProvider>
   );
 }
 

@@ -10,6 +10,7 @@ import { FilterContextProvider } from './context/FilterContext.jsx';
 import { CartContextProvider } from './context/CartContext.jsx';
 import { PaginationContextProvider } from './context/PaginationContext.jsx';
 import { Toaster } from 'react-hot-toast';
+import { ProductsFilterContextProvider } from './context/ProductsFilterContext.jsx';
 
 //SETTING UP THE CACHE FOR REACT QUERY
 const query_client = new QueryClient({
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PaginationContextProvider>
         {/* <ProductsContextProvider> */}
         {/* <FilterContextProvider> */}
+        {/* <ProductsFilterContextProvider> */}
         <CartContextProvider>
           <SideBarContextProvider>
             {/* <SingleProductContextProvider> */}
@@ -35,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             {/* </SingleProductContextProvider> */}
           </SideBarContextProvider>
         </CartContextProvider>
+        {/* </ProductsFilterContextProvider> */}
         {/* </FilterContextProvider> */}
         {/* </ProductsContextProvider> */}
       </PaginationContextProvider>

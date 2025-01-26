@@ -14,6 +14,7 @@ import { usePaginationContext } from '../context/PaginationContext';
 import { results_on_the_screen } from '../constants';
 import Loader from '../ui/Loader';
 import { useGetProducts } from '../hooks/useGetProducts';
+import Filter_tags from './filter_tags.component';
 
 const ProductListWrapper = styled.div`
   display: flex;
@@ -80,7 +81,7 @@ function ProductList() {
   } = useGetProducts();
 
   const navigate = useNavigate();
-  console.log(all_products);
+  // console.log(all_products);
   //grabbing the filter value from the url
   const [search_params] = useSearchParams();
   const { page } = usePaginationContext();
@@ -92,9 +93,9 @@ function ProductList() {
   //when the products is still loading, process products will be an empty array, that's why we need to check if products are still loading
   if (is_getting_products) return <Loader />;
 
-  if (!all_products.length > 0) return <Empty resource_name={`Products`} />;
+  // if (!all_products.length > 0) return <Empty resource_name={`Products`} />;
 
-  console.log(all_products.length);
+  // console.log(all_products.length);
 
   const pricing_card_elements = all_products.map((product) => {
     const { id, image, name, stars: rating, price, description } = product;
@@ -121,27 +122,23 @@ function ProductList() {
           <ProductCard.Price price={price} />
         </CardContent>
       </ProductCard>
-      // <CatalogProductCard key={name}>
-      //   <CatalogProductCard.Icons
-      //     icons={[<Heart />, <Link />, <FaMagnifyingGlassPlus />]}
-      //   />
-      //   <CatalogProductCard.Image src={image} alt={name} />
-      //   <CatalogProductCard.Rating rating={rating || 4} num_of_reviews={7900} />
-      //   <CatalogProductCard.Name>{name}</CatalogProductCard.Name>
-      //   <CatalogProductCard.Price price={price} />
-      // </CatalogProductCard>
     );
   });
   return (
     <ProductListWrapper>
-      {pricing_card_elements}
+      <Filter_tags />
+      {all_products.length > 0 ? (
+        pricing_card_elements
+      ) : (
+        <Empty resource_name={`Products`} />
+      )}
       <span className="num_of_products">
-        {all_products.length > 1
+        {all_products.length > 1 || all_products.length !== 1
           ? `${count} products found`
           : `${count} product found`}
         {/* {process_products.all_filtered_products.length} products found */}
       </span>
-      <Pagination total_results={count} />
+      <Pagination pagination_category="page" total_results={count} />
       {/* <Pagination total_results={process_products.length} /> */}
     </ProductListWrapper>
   );

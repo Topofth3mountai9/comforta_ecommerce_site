@@ -5,6 +5,8 @@ export const PaginationContext = createContext();
 
 const initial_state = {
   page: 1,
+  similar_items_page: 1,
+  frequently_viewed_items_page: 1,
 };
 
 export const PaginationContextProvider = ({ children }) => {

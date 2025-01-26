@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../ui/nav_bar';
 import { cart_button_links, nav_links } from '../data';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom';
 import Button from '../ui/button.component';
 import styled from 'styled-components';
 import { respond_to } from '../helpers/breakpoints';
@@ -16,6 +16,7 @@ import { useLogout } from '../features/authentication/useLogout';
 import ButtonWithIcon from '../ui/button_with_icon';
 import { Search } from 'lucide-react';
 import Search_filter from './search_filter.component';
+import { useCartContext } from '../context/CartContext';
 const NavBarContainer = styled.div`
   position: fixed;
   top: 0;
@@ -89,6 +90,18 @@ const StyledLinkWithIcon = styled(Link)`
 
 const GhostButton = styled.button`
   border-radius: ${({ theme }) => theme.border_radius.sm};
+  position: relative;
+
+  .cart_products_count {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    position: absolute;
+    top: -6.2px;
+    right: 0.3rem;
+    background: ${({ theme }) => theme.colors.brand_secondary_dark[300]};
+    color: ${({ theme }) => theme.colors.brand_secondary_light[300]};
+  }
   &:hover {
     background-color: ${({ hover, theme }) =>
       hover === 'primary' ? theme.colors.primary : theme.colors.secondary};
@@ -112,6 +125,7 @@ function NavBar() {
   const { user, isLoading } = useGetCurrentUser();
   const logout_mutation = useLogout();
   const navigate = useNavigate();
+  const { total_num_cart_items } = useCartContext();
   // logout_mutation.mutate()
   const { is_sidebar_open, close_sidebar, open_sidebar, toggle_sidebar } =
     useSideBarContext();
@@ -186,6 +200,9 @@ function NavBar() {
               className="btn btn-ghost btn_small flex_items align_middle align_horizontal"
             >
               <span>cart</span> <HiOutlineShoppingCart />
+              <span className="cart_products_count flex_items align_middle align_horizontal">
+                {total_num_cart_items}
+              </span>
             </GhostButton>
           </StyledLinkWithIcon>
           {user ? (
@@ -239,6 +256,9 @@ function NavBar() {
                 className="btn btn-ghost btn_small flex_items align_middle align_horizontal"
               >
                 <span>cart</span> <HiOutlineShoppingCart />
+                <span className="cart_products_count flex_items align_middle align_horizontal">
+                  {total_num_cart_items}
+                </span>
               </GhostButton>
             </StyledLinkWithIcon>
           </StyledList>

@@ -14,6 +14,7 @@ const CardWrapper = styled.div`
   border-radius: 8px;
   overflow: hidden;
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  box-shadow: ${({ theme }) => theme.box_shadows.md};
   background-color: white;
   display: flex;
   flex-direction: column;

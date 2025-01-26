@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import Normal_select from './normal_select.component';
 import { hex_color_to_string } from '../helpers/hex_to_string';
 import { theme } from '../styles/theme';
+import { useProductsFilterContext } from '../context/ProductsFilterContext';
+import { ADD_NEW_FILTER } from '../actions';
 
 const FilterWrapper = styled.div`
   margin-top: 1em;
@@ -99,11 +101,19 @@ function Filter({
   like_sort = false,
   like_card = false,
 }) {
+  const { state, dispatch } = useProductsFilterContext();
   const [form_data, set_form_data] = useState();
   const [search_params, set_search_params] = useSearchParams();
 
   let current_filter =
     search_params.get(filter_field) || filter_options.at(0).value;
+
+  //updating the filters in productfiltercontext any time the search_params change
+  // useEffect(() => {
+  //   if (current_filter) {
+  //     dispatch({ type: ADD_NEW_FILTER, payload: current_filter });
+  //   }
+  // }, [current_filter]);
 
   let filter_wrapper_style = {};
   if (like_card)
@@ -118,6 +128,9 @@ function Filter({
     //the way this works is we need to set the params first
     search_params.set(filter_field, value);
     set_search_params(search_params);
+
+    //we also create the filter tags
+    // dispatch({ type: ADD_NEW_FILTER, payload: value });
   }
 
   function handle_change(event) {

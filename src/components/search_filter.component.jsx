@@ -4,6 +4,7 @@ import { useFilterContext } from '../context/FilterContext';
 import { useSearchParams } from 'react-router-dom';
 import Normal_input from './normal_input.component';
 import { useGetProducts } from '../hooks/useGetProducts';
+import { to_be_removed_when_searching } from '../helpers/filter_helpers';
 
 const SearchFilterWrapper = styled.div``;
 
@@ -24,6 +25,20 @@ function Search_filter() {
     // console.log(event);
     let { name, type, value, checked } = event.target;
     set_form_data(value);
+
+    //removing the other filters
+    to_be_removed_when_searching.forEach((filter_field) => {
+      // console.log(filter_field);
+      let param_query = search_params.get(filter_field);
+      // console.log(param_query);
+      if (param_query) {
+        //deleting the query param
+        search_params.delete(filter_field);
+
+        //updating the state afterwards
+        set_search_params(search_params);
+      }
+    });
 
     search_params.set('search', value);
     set_search_params(search_params);

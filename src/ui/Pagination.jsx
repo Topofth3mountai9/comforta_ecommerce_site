@@ -62,10 +62,25 @@ const PaginationButton = styled.button`
   }
 `;
 
-function Pagination({ total_results }) {
-  const { page, dispatch } = usePaginationContext();
+function Pagination({ pagination_category, total_results }) {
+  const { page, similar_items_page, frequently_viewed_items_page, dispatch } =
+    usePaginationContext();
 
-  const current_page = page;
+  let current_page;
+  let which_section;
+  if (pagination_category === 'similar_items') {
+    current_page = similar_items_page;
+    which_section = 'similar_items_page';
+  }
+  if (pagination_category === 'frequently_viewed_items') {
+    current_page = frequently_viewed_items_page;
+    which_section = 'frequently_viewed_items_page';
+  } else {
+    current_page = page;
+    which_section = 'page';
+  }
+
+  console.log(current_page);
   // const [searchParams, setSearchParams] = useSearchParams();
   // const current_page = !searchParams.get('page')
   //   ? 1
@@ -85,7 +100,7 @@ function Pagination({ total_results }) {
 
     // searchParams.set('page', next);
     // setSearchParams(searchParams);
-    dispatch({ type: SET_NEXT_PAGE, payload: { next } });
+    dispatch({ type: SET_NEXT_PAGE, payload: { which_section, next } });
   }
 
   function prevPage() {
@@ -93,7 +108,7 @@ function Pagination({ total_results }) {
 
     // searchParams.set('page', prev);
     // setSearchParams(searchParams);
-    dispatch({ type: SET_PREV_PAGE, payload: { prev } });
+    dispatch({ type: SET_PREV_PAGE, payload: { which_section, prev } });
   }
 
   if (num_of_pages_to_cycle_through <= 1) return null;
