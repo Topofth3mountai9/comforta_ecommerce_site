@@ -29,6 +29,7 @@ function Home() {
         primary_button_text="Shop Now"
         secondary_button_text="explore"
         on_primary_click={() => navigate('/products')}
+        on_secondary_click={() => navigate('/products')}
       />
 
       <Trending_products />

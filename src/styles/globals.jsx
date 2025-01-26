@@ -238,9 +238,14 @@ input,
 }
 
 .active {
-  background: ${theme.colors.primary} !important;
-  color: ${theme.colors.grey[100]};
-  padding: 0.6em 1.2em;
+  /* background: ${theme.colors.primary} !important; */
+  /* color: ${theme.colors.grey[100]}; */
+  /* padding: 0.6em 1.2em; */
+  
+    /* border-bottom: ${({ theme }) =>
+      `.2rem solid ${theme.colors.brand_secondary_dark[200]} `}; */
+    /* color: ${({ theme }) => theme.colors.brand_secondary_dark[500]}; */
+    color: ${({ theme }) => theme.colors.brand_primary_light[800]} !important;
 }
 
 .btn {

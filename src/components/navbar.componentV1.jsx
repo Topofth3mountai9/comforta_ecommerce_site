@@ -49,155 +49,42 @@ const StyledList = styled.li`
   }
 `;
 
-const StyledListMobile = styled.li`
-  position: relative;
-  font-size: 5rem;
-  /* font-family: ${({ theme }) => theme.typography.fonts.secondary}; */
-  &::before {
-    content: '';
-    width: 15rem;
-    height: 0.3rem;
-    background-color: ${({ theme }) => theme.colors.primary};
-    position: absolute;
-    top: 50%;
-    left: -17rem;
-    transform: translateY(-50%);
-    transform: scale(0);
-    transform-origin: right;
-    transition: transform 0.3s;
-  }
-
-  &::after {
-    content: '';
-    width: 15rem;
-    height: 0.3rem;
-    position: absolute;
-    background-color: ${({ theme }) => theme.colors.primary};
-    top: 50%;
-    right: -17rem;
-    transform: translateY(-50%);
-    transform: scale(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primary};
-    &::before,
-    &::after {
-      transform: scale(1);
-    }
-  }
-`;
-
 const StyledLink = styled(NavLink)`
   line-height: 1 !important;
-  letter-spacing: 0.2rem;
-
-  color: ${({ theme }) => theme.colors.brand_secondary_light[900]};
-  transition: all 0.3s;
-
-  &::after {
-    content: '';
-    background: ${({ theme }) => theme.colors.brand_secondary_dark[200]};
-    height: 0.2rem;
-    width: 7rem;
-    position: absolute;
-    bottom: 4rem;
-    //we need to hide it
-    transform: scale(0);
-    transform-origin: left;
-    transition: transform 0.3s;
+  .btn {
+    font-size: ${({ theme }) => theme.typography.text.xs} !important;
+    text-transform: uppercase;
   }
-
+  border-radius: ${({ theme }) => theme.border_radius.sm};
   &:hover {
-    color: ${({ theme }) => theme.colors.brand_secondary_dark[500]};
-
-    &::after {
-      transform: scale(1);
-    }
-
-    /* text-decoration: ${({ theme }) =>
-      `.1rem solid ${theme.colors.brand_secondary_dark[100]}`}; */
+    background-color: ${({ hover, theme }) =>
+      hover === 'primary' ? theme.colors.primary : theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.grey[0]};
   }
 
   ${respond_to('768')} {
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    font-size: 1.5rem;
-    line-height: 1em;
-    gap: 0.5rem;
-    font-weight: 600;
     .btn {
       font-size: ${({ theme }) => theme.typography.text.large};
     }
   }
 `;
 
-const LoginButton = styled(Link)`
-  svg {
-    height: 2rem;
-    width: 2rem;
-  }
-  ${respond_to('768')} {
-    .btn {
-      /* font-size: 1.5rem; */
-      padding: 0.7em 3em;
-      /* background-color: #fff; */
-      /* color: ${({ theme }) => theme.colors.brand_secondary_light[900]}; */
-    }
-    /* text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    line-height: 1em;
-    gap: 0.5rem;
-    font-weight: 600; */
-  }
-`;
-
-const StyledLinkMobile = styled(Link)``;
-
 const StyledLinkWithIcon = styled(Link)`
-  position: relative;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  font-size: 0.875rem;
-  line-height: 1em;
-  gap: 0.5rem;
-  font-weight: 600;
-
-  .cart_products_count {
-    height: 2rem;
-    width: 2rem;
-    padding: 0.5rem;
-    border-radius: 50%;
-    position: absolute;
-    /* top: -7px;
-    right: -13.9px; */
-    top: -6.7px;
-    right: -11.6px;
-    background: ${({ theme }) => theme.colors.brand_secondary_dark[300]};
-    color: ${({ theme }) => theme.colors.brand_secondary_light[300]};
-    font-size: 1.25rem;
+  .btn {
+    font-size: ${({ theme }) => theme.typography.text.xs};
+    /* padding: 0; */
   }
 
   svg {
     color: ${({ theme }) => theme.colors.black.black_500};
   }
   &:hover {
-    color: ${({ theme }) => theme.colors.brand_primary_light[800]};
-    svg {
-      color: ${({ theme }) => theme.colors.brand_primary_light[800]};
+    .btn-ghost {
+      /* background-color: ${({ theme }) => theme.colors.primary}; */
     }
-  }
-
-  ${respond_to('768')} {
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    font-size: 1.5rem;
-    /* font-size: 5rem; */
-    line-height: 1em;
-    gap: 0.5rem;
-    font-weight: 600;
+    svg {
+      color: ${({ theme }) => theme.colors.grey[0]};
+    }
   }
 `;
 
@@ -262,27 +149,14 @@ function NavBar() {
       <StyledList key={id} onClick={close_sidebar}>
         <StyledLink
           hover="primary"
-          className="nav_link flex_items align_middle align_horizontal text_tiny"
+          className="btn btn-ghost nav_link flex_items align_middle align_horizontal text_xs"
           to={url}
         >
+          {/* <GhostButton  > */}
           {label}
+          {/* </GhostButton> */}
         </StyledLink>
       </StyledList>
-    );
-  });
-  const navbar_link_elements_mobile = nav_links.map((link) => {
-    const { id, label, url } = link;
-
-    return (
-      <StyledListMobile key={id} onClick={close_sidebar}>
-        <StyledLinkWithIcon
-          hover="primary"
-          className="nav_link flex_items align_middle align_horizontal text_tiny"
-          to={url}
-        >
-          {label}
-        </StyledLinkWithIcon>
-      </StyledListMobile>
     );
   });
 
@@ -323,16 +197,16 @@ function NavBar() {
 
         {/* <Navbar.Links>{navbar_button_elements}</Navbar.Links> */}
         <Navbar.Links>
-          <StyledLinkWithIcon
-            to={`/cart`}
-            onMouseEnter={open_cart_drop_down}
-            className=" flex_items align_middle align_horizontal"
-          >
-            {/* <span>cart</span>  */}
-            <HiOutlineShoppingCart />
-            <div className="cart_products_count flex_items align_middle align_horizontal">
-              {total_num_cart_items}
-            </div>
+          <StyledLinkWithIcon to={`/cart`} onMouseEnter={open_cart_drop_down}>
+            <GhostButton
+              hover="primary"
+              className="btn btn-ghost btn_small flex_items align_middle align_horizontal"
+            >
+              <span>cart</span> <HiOutlineShoppingCart />
+              <span className="cart_products_count flex_items align_middle align_horizontal">
+                {total_num_cart_items}
+              </span>
+            </GhostButton>
           </StyledLinkWithIcon>
           {user ? (
             <ButtonWithIcon
@@ -345,15 +219,14 @@ function NavBar() {
               <HiArrowRightOnRectangle />
             </ButtonWithIcon>
           ) : (
-            <LoginButton to={`/login`}>
-              <button
+            <StyledLinkWithIcon to={`/login`}>
+              <GhostButton
                 hover="primary"
-                className="btn btn-primary flex_items align_middle align_horizontal "
+                className="btn btn-ghost btn_small flex_items align_middle align_horizontal"
               >
-                login
-                <HiOutlineUser />
-              </button>
-            </LoginButton>
+                <span>login</span> <HiOutlineUser />
+              </GhostButton>
+            </StyledLinkWithIcon>
           )}
         </Navbar.Links>
         <ButtonWithIcon
@@ -375,18 +248,21 @@ function NavBar() {
         </dialog>
         <Navbar.HamburgerButton />
         <Navbar.MobileMenu>
-          {navbar_link_elements_mobile}
+          {navbar_link_elements}
           <StyledList onClick={close_sidebar}>
             <StyledLinkWithIcon
               to={`/cart`}
-              onMouseEnter={open_cart_drop_down}
-              className=" flex_items align_middle align_horizontal"
+              // onMouseEnter={open_cart_drop_down}
             >
-              <span>cart</span>
-              <HiOutlineShoppingCart />
-              <div className="cart_products_count flex_items align_middle align_horizontal">
-                {total_num_cart_items}
-              </div>
+              <GhostButton
+                hover="primary"
+                className="btn btn-ghost btn_small flex_items align_middle align_horizontal"
+              >
+                <span>cart</span> <HiOutlineShoppingCart />
+                <span className="cart_products_count flex_items align_middle align_horizontal">
+                  {total_num_cart_items}
+                </span>
+              </GhostButton>
             </StyledLinkWithIcon>
           </StyledList>
           <StyledList onClick={close_sidebar}>
@@ -398,15 +274,14 @@ function NavBar() {
                 <HiArrowRightOnRectangle />
               </ButtonWithIcon>
             ) : (
-              <LoginButton to={`/login`}>
-                <button
+              <StyledLinkWithIcon to={`/login`}>
+                <GhostButton
                   hover="primary"
-                  className="btn btn-primary flex_items align_middle align_horizontal "
+                  className="btn btn-ghost btn_small flex_items align_middle align_horizontal"
                 >
-                  login
-                  <HiOutlineUser />
-                </button>
-              </LoginButton>
+                  <span>login</span> <HiOutlineUser />
+                </GhostButton>
+              </StyledLinkWithIcon>
             )}
           </StyledList>
         </Navbar.MobileMenu>

@@ -32,7 +32,7 @@ function Filter_operations() {
   } = useGetProducts();
   const unique_categories = get_unique_values(everything, 'category');
   const unique_companies = get_unique_values(everything, 'company');
-  //   console.log(unique_companies);
+  // console.log(unique_companies);
   const default_companies = ['all', 'ikea', 'marcos', 'liddy', 'caressa'];
   const unique_colors = get_unique_values(everything, 'colors');
   console.log(unique_colors);
@@ -55,7 +55,7 @@ function Filter_operations() {
           { value: 'bedroom', label: 'bedroom' },
           { value: 'office', label: 'office' },
           { value: 'kitchen', label: 'kitchen' },
-          { value: 'living_room', label: 'living room' },
+          { value: 'living room', label: 'living room' },
           { value: 'kids', label: 'kids' },
           { value: 'dining', label: 'dining' },
         ]}

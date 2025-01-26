@@ -14,8 +14,8 @@ const StyledButton = styled.button`
 `;
 
 function LoginForm() {
-  const [email, setEmail] = useState('somn@protonmail.co');
-  const [password, setPassword] = useState('123456789');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   // const { login_mutation, is_logging_in } = useLogin();
   const login_mutation = useLoginAsync();
   // console.log(is_logging_in);

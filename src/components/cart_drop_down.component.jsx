@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { theme } from '../styles/theme';
 import { Link } from 'react-router-dom';
 import { useOutsideClick } from '../hooks/useOutsideClick';
+import { respond_to } from '../helpers/breakpoints';
 
 const CartDropDownContainer = styled.div`
   /* display: flex; */
@@ -26,6 +27,10 @@ const CartDropDownContainer = styled.div`
   * {
     scrollbar-color: #333 #f5f5f5;
     scrollbar-color: ${({ theme }) => theme.colors.secondary};
+  }
+
+  ${respond_to('1100')} {
+    display: none;
   }
 `;
 

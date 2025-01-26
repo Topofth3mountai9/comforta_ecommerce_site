@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 const Bar = styled.div`
   height: 0.3rem;
   width: 3rem;
-  background: ${({ theme }) => theme.colors.grey.light};
+  background: ${({ theme }) => theme.colors.brand_secondary_dark[50]};
   transition: transform 0.3s;
 `;
 
