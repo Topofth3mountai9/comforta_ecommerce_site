@@ -5,8 +5,8 @@ import toast from 'react-hot-toast';
 export function useSignUp() {
   const {
     mutate: sign_up_mutation,
-    isPending: is_signing_up_,
-    isLoading: is_signing_up,
+    isPending: is_signing_up,
+    // isLoading: is_signing_up,
   } = useMutation({
     mutationFn: signup,
     onSuccess: (user) => {

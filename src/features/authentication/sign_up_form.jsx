@@ -8,6 +8,8 @@ import { get_any_input_validation } from '../../helpers/get_any_input_validation
 import styled from 'styled-components';
 import { useSignUp } from './useSignUp';
 import { useNavigate } from 'react-router-dom';
+import { LoaderPinwheelIcon } from 'lucide-react';
+import Loader_mini from '../../ui/loader_mini';
 
 const Wrapper = styled.div`
   .action_btns {
@@ -149,7 +151,8 @@ function SignUpForm() {
               disabled={is_signing_up}
               type="submit"
             >
-              Sign up
+              {/* Sign up */}
+              {is_signing_up ? <Loader_mini /> : 'Sign up'}
             </button>
           </div>
         </Wrapper>
